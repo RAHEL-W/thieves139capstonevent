@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+
+{%block title%}
+event
+{%endblock%}     
+
+{%include './includes/nav.html'%}
+
+{% block content%}
+{%for even in events%}
+
+<div class="mx-auto card" style="width: 18rem;">
+    <img src="{{even.img_url}}" class="card-img-top" alt="{{even.caption}}">
+    <div class="card-body">
+      <h5 class="card-location">{{even.location}}</h5>
+      <p class="card-caption">{{even.caption}}</p>
+      {%if current_user.id == even.user_id %}
+      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="#" class="btn btn-danger">Delete</a>
+      {%endif%}
+    </div>
+  </div>
+
+{%endfor%}
+{%endblock%}
