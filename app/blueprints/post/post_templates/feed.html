@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+
+{%block title%}
+feed
+{%endblock%}     
+
+{%include './includes/nav.html'%}
+
+{% block content%}
+{%for post in posts%}
+
+<div class="mx-auto card" style="width: 18rem;">
+    <img src="{{post.img_url}}" class="card-img-top" alt="{{post.caption}}">
+    <div class="card-body">
+      <h5 class="card-location">{{post.location}}</h5>
+      <p class="card-caption">{{post.caption}}</p>
+      <p class="card-caption">{{post.author.username}} - {{ moment(post.date).fromNow() }}</p>
+      {%if current_user.id == post.user_id %}
+      <a href="{{url_for('post.edit_post', post_id=post.id)}}" class="btn btn-primary">Edit</a>
+      <a href="{{url_for('post.delete_post', post_id=post.id)}}" class="btn btn-danger">Delete</a>
+      {%endif%}
+    </div>
+  </div>
+
+{%endfor%}
+{%endblock%}

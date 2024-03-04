@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     email = db.Column (db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     eventposts = db.relationship('EventPost', backref='author')
+    posts = db.relationship('Post', backref='author')
     following = db.relationship('User',
                                 secondary=follower_followed,
                                 primaryjoin= (follower_followed.columns.follower_id == id),
@@ -67,3 +68,27 @@ class EventPost(db.Model):
         db.session.commit()     
 
 
+
+
+
+
+class Post(db.Model):    
+    id = db.Column(db.Integer, primary_key=True)
+    img_url=db.Column(db.String, nullable=False) 
+    caption = db.Column(db.String, nullable=False)
+    location = db.Column(db.String, nullable=False)  
+    date =  db.Column(db.DateTime, default=datetime.utcnow(),nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False )  
+
+    def  __init__(self, img_url, caption, location, user_id):
+        self.img_url = img_url
+        self.caption = caption
+        self.location = location
+        self.user_id = user_id
+
+
+
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
