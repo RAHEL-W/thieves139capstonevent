@@ -14,9 +14,10 @@ event
     <div class="card-body">
       <h5 class="card-location">{{even.location}}</h5>
       <p class="card-caption">{{even.caption}}</p>
+      <p class="card-caption">{{even.author.username}} - {{ moment(even.date).fromNow() }}</p>
       {%if current_user.id == even.user_id %}
-      <a href="#" class="btn btn-primary">Edit</a>
-      <a href="#" class="btn btn-danger">Delete</a>
+      <a href="{{url_for('post.edit_event_post', post_id=even.id)}}" class="btn btn-primary">Edit</a>
+      <a href="{{url_for('post.delete_event_post', post_id=even.id)}}" class="btn btn-danger">Delete</a>
       {%endif%}
     </div>
   </div>
