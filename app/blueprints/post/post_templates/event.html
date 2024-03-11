@@ -6,21 +6,36 @@ event
 
 {%include './includes/nav.html'%}
 
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/event.css">
+{%endblock%} 
+
+
 {% block content%}
 {%for even in events%}
+<div class="kard">
 
-<div class="mx-auto card" style="width: 18rem;">
-    <img src="{{even.img_url}}" class="card-img-top" alt="{{even.caption}}">
-    <div class="card-body">
-      <h5 class="card-location">{{even.location}}</h5>
-      <p class="card-caption">{{even.caption}}</p>
-      <p class="card-caption">{{even.author.username}} - {{ moment(even.date).fromNow() }}</p>
+  <div class="card">
+    
+    <img  class="card_img" src="{{even.img_url}}" alt="{{even.caption}}">
+
+    <div id="card_body">
+      <h5 class="caption">{{even.caption}}<h5>
+      <p class="location">{{even.location}}</p>
+      <p class="time">{{even.author.username}} - {{ moment(even.date).fromNow() }}</p>
       {%if current_user.id == even.user_id %}
-      <a href="{{url_for('post.edit_event_post', post_id=even.id)}}" class="btn btn-primary">Edit</a>
-      <a href="{{url_for('post.delete_event_post', post_id=even.id)}}" class="btn btn-danger">Delete</a>
+      <div class="edit">
+      <a href="{{url_for('post.edit_event_post', post_id=even.id)}}" class="btn text-info">Edit</a>
+      <a href="{{url_for('post.delete_event_post', post_id=even.id)}}" class="btn text-danger">Delete</a>
+    </div>
       {%endif%}
     </div>
+
+
   </div>
+</div>
+
+
 
 {%endfor%}
 {%endblock%}

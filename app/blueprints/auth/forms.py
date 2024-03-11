@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired
 class LoginForm(FlaskForm):
     email = EmailField('email', validators=[DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])  
-    submit_btn = SubmitField('login')
+    submit_btn = SubmitField('log in')
 
 
 class SignupForm(FlaskForm):

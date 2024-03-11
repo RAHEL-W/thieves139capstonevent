@@ -6,27 +6,32 @@ Creat event post
 
 {%endblock%}  
 
-
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%} 
 
 {% block content%}
 {%include './includes/nav.html'%}
 
     <form method="post">
       {{form.hidden_tag()}}
+     <h1>create event post here</h1>
+      <div class="main">
         <div class="mb-3">
           <label for="img_url" class="form-label">image address</label>
-          {{form.img_url(class="form-control", id="img_url")}}
+          {{form.img_url(class="form-control", id="img_url", placeholder="img_url")}}
         </div>
         <div class="mb-3">
           <label for="caption" class="form-label">description</label>
-          {{form.caption(class="form-control", id="caption")}}
+          {{form.caption(class="form-control", id="caption",placeholder="caption")}}
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            {{form.location(class="form-control", id="location")}}
+            {{form.location(class="form-control", id="location", placeholder="location")}}
           </div>
          
-        {{form.submit_btn(class="btn btn-primary")}}
+        {{form.submit_btn(class="btn ")}}
+      </div>
       </form>
 
       {%endblock%}

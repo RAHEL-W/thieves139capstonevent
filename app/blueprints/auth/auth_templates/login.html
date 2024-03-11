@@ -5,6 +5,9 @@
 login
 {%endblock%}  
 
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%}   
 
 
 {% block content%}
@@ -12,16 +15,22 @@ login
 
     <form method="post">
       {{form.hidden_tag()}}
+      <h1>login here</h1>
+      <div class="main">
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          {{form.email(class="form-control", id="email")}}
-        </div>
-        <div class="mb-3">
-          <label for="Password" class="form-label">Password</label>
-          {{form.password(class="form-control", id="password")}}
+          {{form.email(class="form-control", id="email", placeholder="email")}}
         </div>
         
-        {{form.submit_btn(class="btn btn-primary")}}
+        <div class="mb-3">
+          <label for="Password" class="form-label" >Password</label>
+          
+          {{form.password(class="form-control", id="password", placeholder="password")}}
+  
+      </div>
+        {{form.submit_btn(class="btn ")}}
+
+      </div>
       </form>
 
       {%endblock%}

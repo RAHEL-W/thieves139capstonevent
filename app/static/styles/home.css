@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+
+
+body{
+    background-image: url("https://plus.unsplash.com/premium_photo-1665426466632-bfb65641f034?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1pbi1zYW1lLXNlcmllc3wxfHx8ZW58MHx8fHx8");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+   
+}
+
+
+.home{
+    width: 800px;
+    margin: auto;
+     margin-top: 25px ;
+    
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700);
+
+h1{
+    
+    
+      font-size: 8.0em;
+      text-transform: uppercase;
+      font-family: 'Open Sans Pro', sans-serif;
+      background: url(https://24.media.tumblr.com/tumblr_m87dri70zh1qzla33o1_500.gif);
+      background-size: cover;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    
+}
+
+#san{
+    margin-left: 11rem;
+   
+}
+
+h3{
+
+    color: aliceblue;
+    text-shadow: 1px 1px 1px #5b5959, 
+                     3px 3px 5px rgb(181, 201, 200); 
+      
+}

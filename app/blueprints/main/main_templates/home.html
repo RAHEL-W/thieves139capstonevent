@@ -3,10 +3,17 @@
 {%block title%}
 
 home
-{%endblock%}     
+{%endblock%}  
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/home.css">
+{%endblock%}   
 
 {%include './includes/nav.html'%}
 
 {% block content%}
-<h1>wellcome to my school</h1>
+<div class="home">
+    <h1><p id="san">san</p> francisco</h1>  
+<h3>“Where every hill offers a fresh perspective, let’s discover together…”</h3>
+
+</div>
 {%endblock%}

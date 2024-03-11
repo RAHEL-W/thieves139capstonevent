@@ -6,13 +6,17 @@ Creat  post
 
 {%endblock%}  
 
-
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%} 
 
 {% block content%}
 {%include './includes/nav.html'%}
 
     <form method="post">
       {{form.hidden_tag()}}
+      <h1>create post event</h1>
+      <div class="main"></div>
         <div class="mb-3">
           <label for="img_url" class="form-label">image address</label>
           {{form.img_url(class="form-control", id="img_url")}}
@@ -27,6 +31,7 @@ Creat  post
           </div>
          
         {{form.submit_btn(class="btn btn-primary")}}
+      </div>
       </form>
 
       {%endblock%}
