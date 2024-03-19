@@ -1,9 +1,10 @@
 from flask import request, flash, render_template, redirect, url_for
+from psycopg2 import IntegrityError
 from . import auth
 from .forms import SignupForm,LoginForm
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
-from app.models import User
+from app.models import User, db
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -11,17 +12,18 @@ def signup():
     form=SignupForm()
     if request.method == "POST" and form.validate_on_submit():
         username = form.username.data
-        city = form.city.data
         email = form.email.data
         password = form.password.data
+        new_user = User( username,  email, password)
+        try:
+            new_user.save()
+            flash('Success! Thank you for signing up', 'success')
+            return redirect(url_for('auth.login'))
+        except IntegrityError:
+            db.session.rollback()
+            flash('Username or email already exists.', 'error')
 
-        new_user = User( username, city, email, password)
-        new_user.save()
-
-        flash('success! thank you for signup', 'success')
-        return redirect(url_for('auth.login'))
-    else:
-        return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form)
 
 
 

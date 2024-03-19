@@ -8,35 +8,20 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-follower_followed = db.Table(
-
-    'follower_followed',
-    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-
-)
 
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username  = db.Column(db.String, unique=True, nullable=False)
-    city = db.Column(db.String, nullable=False)
     email = db.Column (db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    eventposts = db.relationship('EventPost', backref='author')
     posts = db.relationship('Post', backref='author')
-    following = db.relationship('User',
-                                secondary=follower_followed,
-                                primaryjoin= (follower_followed.columns.follower_id == id),
-                                secondaryjoin= (follower_followed.columns.followed_id== id),
-                                backref="followed_by",
-                                lazy='dynamic')
+   
 
 
-    def __init__(self,  username, city, email,password):
+    def __init__(self,  username,  email,password):
         
         self.username = username
-        self.city= city
         self.email = email
         self.password = generate_password_hash(password)
 
@@ -44,28 +29,7 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()  
 
-
-
-class EventPost(db.Model):    
-    id = db.Column(db.Integer, primary_key=True)
-    img_url=db.Column(db.String, nullable=False) 
-    caption = db.Column(db.String, nullable=False)
-    location = db.Column(db.String, nullable=False)  
-    date =  db.Column(db.DateTime, default=datetime.utcnow(),nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False )  
-
-    def  __init__(self, img_url, caption, location, user_id):
-        self.img_url = img_url
-        self.caption = caption
-        self.location = location
-        self.user_id = user_id
-
-
-
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()     
+   
 
 
 
